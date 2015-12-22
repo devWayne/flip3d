@@ -1,0 +1,19 @@
+{
+  "name": "flip3d",
+  "version": "1.0.0",
+  "description": "flip with 3d transition",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devWayne/flip3d.git"
+  },
+  "author": "Jarvan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devWayne/flip3d/issues"
+  },
+  "homepage": "https://github.com/devWayne/flip3d#readme"
+}

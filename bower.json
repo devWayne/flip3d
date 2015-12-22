@@ -1,0 +1,20 @@
+{
+  "name": "flip3d",
+  "version": "1.0.0",
+  "homepage": "https://github.com/devWayne/flip3d",
+  "authors": [
+    "珈文 <jiawen.czq@alibaba-inc.com>"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flipsnap": "~0.6.3"
+  }
+}
