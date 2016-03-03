@@ -5,82 +5,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>flip3d</title>
-    <style>
-        .viewport {
-            box-sizing: border-box;
-            margin: 0 auto;
-        }
-        
-        .flip3d {
-            -webkit-perspective: 400px;
-            perspective: 400px;
-            position: relative;
-            height: 320px;
-            width: 320px;
-            -webkit-transform-style: preserve-3d;
-            overflow: visible;
-            -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            /* 320px(item width) * 3(item count) */
-        }
-        
-        
-        .first {
-            -webkit-transform: translate3d(50%, 0, -100px) rotateY(-17deg);
-            transform: translate3d(50%, 0, -100px) rotateY(-17deg);
-        }
-        
-        .last {
-            -webkit-transform: translate3d(-50%, 0, -100px) rotateY(17deg);
-            transform: translate3d(-50%, 0, -100px) rotateY(17deg);
-        }
-        
-        .middle {
-            -webkit-transform: translate3d(0, 0, 1px);
-            transform: translate3d(0, 0, 1px);
-        }
-        
-        .item {
-            -webkit-transition: -webkit-transform 0.5s ease;
-            transition: -webkit-transform 0.5s ease;
-            transition: transform 0.5s ease;
-            transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-            display: inline-block;
-            /* float: left; */
-            width: 310px;
-            font-size: 50px;
-            text-align: center;
-            padding: 50px 0;
-            background: #EFEFEF;
-            border: 5px solid #999;
-            color: #666;
-            position: absolute;
-            height: 160px;
-            top: 0;
-            left: 90px;
-            -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
-    <div class="viewport">
-        <div class="flip3d">
-            <div class="item item0 middle">0</div>
-            <div class="item item1 last">1</div>
-            <div class="item item2 first">2</div>
+<div class="viewport">
+    <div class="flip3d">
+        
+        <div class="item item0 last">
+            <div class="summary">
+                <p class="content0">0</p>
+            </div>
+        </div>
+        <div class="item item1 current">
+            <div class="summary">
+                <p class="content1">1</p>
+            </div>
+        </div>
+        
+        <div class="item item2 next">            
+            <div class="summary">
+                <p class="content2">2</p>
+            </div>
         </div>
     </div>
-    <script src="../swipe.js"></script>
-    <script src="../index.js"></script>
+</div>
+    <script src="../flip3d.js"></script>
     <script>
+    window.pageList = [0,1,2,3,4,5,6,7,8,9];
+    var i = 1;
 	window.onload = function(){
-        //var swipe = new Swipe('.flipsnap');
-        var flips3d = new flip3d();
-        flips3d.init(3);
+        var flips3d = new flip3d('',{
+            afterCb:function(dir){
+            if(dir<0){
+               i<window.pageList.length-2 ?++i:i= -1;
+               document.querySelector('.next p').innerHTML = pageList[i+1];
+            }else if(dir>0){
+              i>1?--i:i= window.pageList.length;
+               document.querySelector('.last p').innerHTML = pageList[i-1];
+            }      
+            }
+        });
   	}
     </script>
 </body>

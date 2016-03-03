@@ -1,6 +1,6 @@
 function Swipe(element) {
   var self = this;
-  self.element = document.querySelector(element);
+  self.element = typeof element == 'string' ? document.querySelector(element) : element;
   eventTypes.forEach(function(type) {
     self.element.addEventListener(events.start[type], self, false);
   });
@@ -141,6 +141,7 @@ Swipe.prototype._touchMove = function(event, type) {
 
     if (isPrevent) {
       self._touchAfter({
+        el:self.element,
         moved: false,
         originalPoint: self.currentPoint,
         newPoint: self.currentPoint,
@@ -194,6 +195,7 @@ Swipe.prototype._touchEnd = function(event, type) {
   }
 
   self._touchAfter({
+    el:self.element,
     moved: newPoint !== self.currentPoint,
 	moveDistX: self.moveDistX,
 	 directionX: self.directionX, 
@@ -275,3 +277,5 @@ function getPos(event, client) {
 var DISTANCE_THRESHOLD = 5;
 var ANGLE_THREHOLD = 55;
 
+
+module.exports = Swipe;
